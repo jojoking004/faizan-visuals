@@ -12,6 +12,118 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ============================================= */
+        /*      TRANSPARENT SECTIONS & GLASS-EFFECT      */
+        /* ============================================= */
+
+        #about, #certifications {
+            background: transparent;
+            /* Optional: Add a subtle border to define the transparent sections */
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Update text colors for readability on dark background */
+        #about h2, #about h3, #about h4, #about p,
+        #certifications h2, #certifications .lead {
+            color: #ffffff;
+        }
+
+        #about .profile-pic-container img {
+             background: rgba(255, 255, 255, 0.1);
+             border-radius: 50%;
+             padding: 10px;
+        }
+
+        #about .skill-tag {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(5px);
+        }
+
+        .certification-entry {
+            /* This creates the "frosted glass" effect */
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px); /* For Safari */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .certification-entry:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Make all text inside the glass card white */
+        .certification-icon,
+        .certification-title,
+        .certification-issuer,
+        .certification-date {
+            color: #ffffff;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .certification-issuer strong {
+            color: #e0e0e0;
+        }
+        
+        /* Style the button for the new background */
+        .btn-view-cert {
+            border: 2px solid #fff;
+            color: #fff;
+            background-color: transparent;
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view-cert:hover {
+            background-color: #fff;
+            color: #121212; /* Dark text on hover */
+        }
+        
+        .certification-img-container {
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .certification-image {
+            transition: transform 0.4s ease;
+        }
+
+        .certification-img-container:hover .certification-image {
+            transform: scale(1.05);
+        }
+
+        /* Image Modal Styles */
+        .modal-image {
+            display: none; position: fixed; z-index: 1060; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
+        }
+        .modal-content-image {
+            margin: auto; display: block; width: 90%; max-width: 800px; animation-name: zoom; animation-duration: 0.5s;
+        }
+        @keyframes zoom {
+            from {transform: scale(0.5); opacity: 0;} to {transform: scale(1); opacity: 1;}
+        }
+        .close-image {
+            position: absolute; top: 20px; right: 40px; color: #f1f1f1; font-size: 45px; font-weight: bold; transition: 0.3s; text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .close-image:hover, .close-image:focus {
+            color: #bbb; text-decoration: none; cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
@@ -43,6 +155,7 @@
                     <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#work">Work</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
@@ -61,7 +174,7 @@
 
     <!-- Main Content Wrapper -->
     <div class="content-wrapper">
-        <!-- Work Section -->
+        <!-- Work Section (Remains with its own background) -->
         <section id="work" class="py-5">
             <div class="container">
                 <div class="row text-center justify-content-center mb-5">
@@ -70,101 +183,28 @@
                         <p data-aos="fade-up" data-aos-delay="100">A selection of my projects that showcases my skills in design and development. Click on any item to learn more about the process and technology behind it.</p>
                     </div>
                 </div>
-
                 <div class="row gy-4">
-                    <!-- Project 1 -->
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1">
-                            <img src="LOGOS.jpeg" class="img-fluid" alt="Logo Design Project">
-                            <div class="portfolio-item-overlay"><h3>Logo Design</h3><p>A modern branding concept.</p></div>
-                        </div>
-                    </div>
-                    <!-- Project 2 -->
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1">
-                            <img src="illustration.jpeg" class="img-fluid" alt="Illustration Project">
-                            <div class="portfolio-item-overlay"><h3>Illustration</h3><p>Vibrant vector art.</p></div>
-                        </div>
-                    </div>
-                    <!-- Project 3 -->
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                         <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1">
-                            <img src="post design.jpeg" class="img-fluid" alt="Post Design Project">
-                            <div class="portfolio-item-overlay"><h3>Post Design</h3><p>Engaging social media graphics.</p></div>
-                        </div>
-                    </div>
-                    <!-- Project 4 (New) -->
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1">
-                            <img src="brandings.jpeg" class="img-fluid" alt="Branding Project">
-                            <div class="portfolio-item-overlay"><h3>Brand Identity</h3><p>Complete visual systems.</p></div>
-                        </div>
-                    </div>
-                    <!-- Project 5 (New) -->
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1">
-                            <img src="package and label.jpeg" class="img-fluid" alt="Packaging Design">
-                            <div class="portfolio-item-overlay"><h3>Packaging Design</h3><p>Product packaging concepts.</p></div>
-                        </div>
-                    </div>
-                    <!-- Project 6 (New) -->
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1">
-                            <img src="package and labels 2.jpeg" class="img-fluid" alt="Web Graphics">
-                            <div class="portfolio-item-overlay"><h3> Packaging Design</h3><p>Product packaging concepts.</p></div>
-                        </div>
-                    </div>
-                    <!-- Project 7 (New) -->
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1">
-                            <img src="billboards.jpeg" class="img-fluid" alt="Motion Graphics">
-                            <div class="portfolio-item-overlay"><h3>billboards</h3><p>billboard designs</p></div>
-                        </div>
-                    </div>
-                    <!-- Project 8 (New) -->
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1">
-                            <img src="cv and resume.jpeg" class="img-fluid" alt="T-Shirt Design">
-                            <div class="portfolio-item-overlay"><h3>cv and resume</h3><p>Custom cv and resume.</p></div>
-                        </div>
-                    </div>
-                    <!-- Project 9 (New) -->
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1">
-                            <img src="social banner.jpeg" class="img-fluid" alt="Infographics">
-                            <div class="portfolio-item-overlay"><h3>social banner </h3><p>to make your social appearance valueable.</p></div>
-                        </div>
-                    </div>
-                    <!-- Project 10 (New) -->
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1">
-                            <img src="cards.jpeg" class="img-fluid" alt="Print Design">
-                            <div class="portfolio-item-overlay"><h3>buisiness and viisiting cards</h3><p>buisiness and visiting cards</p></div>
-                        </div>
-                    </div>
-                    <!-- Project 11 (New) -->
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1">
-                            <img src="thumbnail and gig image.jpeg" class="img-fluid" alt="Character Design">
-                            <div class="portfolio-item-overlay"><h3>thumbnail and gig images</h3><p>thumbnails and gigs</p></div>
-                        </div>
-                    </div>
-                    <!-- Project 12 (New) -->
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1">
-                            <img src="marriage cards.jpeg" class="img-fluid" alt="UI Mockup">
-                            <div class="portfolio-item-overlay"><h3>marriage invitations</h3><p>satisfying your need to express happiness</p></div>
-                        </div>
-                    </div>
+                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100"><div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1"><img src="LOGOS.jpeg" class="img-fluid" alt="Logo Design Project"><div class="portfolio-item-overlay"><h3>Logo Design</h3><p>A modern branding concept.</p></div></div></div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200"><div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1"><img src="illustration.jpeg" class="img-fluid" alt="Illustration Project"><div class="portfolio-item-overlay"><h3>Illustration</h3><p>Vibrant vector art.</p></div></div></div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300"><div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1"><img src="post design.jpeg" class="img-fluid" alt="Post Design Project"><div class="portfolio-item-overlay"><h3>Post Design</h3><p>Engaging social media graphics.</p></div></div></div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100"><div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1"><img src="brandings.jpeg" class="img-fluid" alt="Branding Project"><div class="portfolio-item-overlay"><h3>Brand Identity</h3><p>Complete visual systems.</p></div></div></div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200"><div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1"><img src="package and label.jpeg" class="img-fluid" alt="Packaging Design"><div class="portfolio-item-overlay"><h3>Packaging Design</h3><p>Product packaging concepts.</p></div></div></div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300"><div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1"><img src="package and labels 2.jpeg" class="img-fluid" alt="Web Graphics"><div class="portfolio-item-overlay"><h3> Packaging Design</h3><p>Product packaging concepts.</p></div></div></div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100"><div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1"><img src="billboards.jpeg" class="img-fluid" alt="Motion Graphics"><div class="portfolio-item-overlay"><h3>billboards</h3><p>billboard designs</p></div></div></div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200"><div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1"><img src="cv and resume.jpeg" class="img-fluid" alt="T-Shirt Design"><div class="portfolio-item-overlay"><h3>cv and resume</h3><p>Custom cv and resume.</p></div></div></div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300"><div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1"><img src="social banner.jpeg" class="img-fluid" alt="Infographics"><div class="portfolio-item-overlay"><h3>social banner </h3><p>to make your social appearance valueable.</p></div></div></div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100"><div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1"><img src="cards.jpeg" class="img-fluid" alt="Print Design"><div class="portfolio-item-overlay"><h3>buisiness and viisiting cards</h3><p>buisiness and visiting cards</p></div></div></div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200"><div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1"><img src="thumbnail and gig image.jpeg" class="img-fluid" alt="Character Design"><div class="portfolio-item-overlay"><h3>thumbnail and gig images</h3><p>thumbnails and gigs</p></div></div></div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300"><div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#projectModal1"><img src="marriage cards.jpeg" class="img-fluid" alt="UI Mockup"><div class="portfolio-item-overlay"><h3>marriage invitations</h3><p>satisfying your need to express happiness</p></div></div></div>
                 </div>
             </div>
         </section>
 
-        <!-- About Me -->
+        <!-- About Me Section (Now Transparent) -->
         <section id="about" class="py-5">
             <div class="container">
                 <h2 class="text-center" data-aos="fade-up">About Me</h2>
-                <div class="row align-items-center">
+                <div class="row align-items-center mt-5">
                     <div class="col-lg-5 text-center" data-aos="fade-right">
                         <div class="profile-pic-container">
                             <img src="faizan image.png" class="img-fluid" alt="Muhammad Faizan">
@@ -187,61 +227,81 @@
             </div>
         </section>
 
-        <!-- Services -->
-        <section id="services" class="py-5">
+        <!-- Certifications Section (Now Transparent with Glass Effect) -->
+        <section id="certifications" class="py-5">
             <div class="container">
-                <h2 class="text-center" data-aos="fade-up">Services I Offer</h2>
-                <div class="row text-center">
-                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="service-item p-4 h-100">
-                            <div class="service-icon"><i class="fas fa-palette fa-3x"></i></div>
-                            <h4 class="mt-4">Branding</h4>
-                            <p>Logo design, business cards, complete brand style guides.</p>
+                <div class="row text-center justify-content-center mb-5">
+                    <div class="col-lg-8">
+                        <h2 data-aos="fade-up">Credentials & Certifications</h2>
+                        <p class="lead" data-aos="fade-up" data-aos-delay="100">My commitment to continuous learning and professional development is demonstrated through my certifications.</p>
+                    </div>
+                </div>
+
+                <!-- Certification Entry 1: Image Left -->
+                <div class="row align-items-center certification-entry" data-aos="fade-right">
+                    <div class="col-lg-5">
+                        <div class="certification-img-container">
+                            <img src="faizan .png" class="img-fluid rounded shadow-sm certification-image" alt="Graphic Design Certificate">
                         </div>
                     </div>
-                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="service-item p-4 h-100">
-                            <div class="service-icon"><i class="fas fa-pencil-alt fa-3x"></i></div>
-                            <h4 class="mt-4">Illustration</h4>
-                            <p>Custom illustrations, icons, and detailed character design.</p>
+                    <div class="col-lg-7">
+                        <div class="certification-details p-lg-4">
+                            <div class="certification-icon"><i class="fas fa-award"></i></div>
+                            <h3 class="certification-title">Certified Graphic Designer</h3>
+                            <p class="certification-issuer"><strong>Issued by:</strong> Fatima Institute of Computer Sciences</p>
+                            <p class="certification-date"><em> january 2023</em></p>
+                            <button class="btn btn-view-cert mt-3">View Certificate</button>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="service-item p-4 h-100">
-                            <div class="service-icon"><i class="fas fa-video fa-3x"></i></div>
-                            <h4 class="mt-4">Animation</h4>
-                            <p>2D & 3D logo animations, engaging social media posts.</p>
+                </div>
+
+                <!-- Certification Entry 2: Image Right -->
+                <div class="row align-items-center certification-entry" data-aos="fade-left">
+                    <div class="col-lg-7 order-lg-1">
+                        <div class="certification-details text-lg-end p-lg-4">
+                            <div class="certification-icon"><i class="fab fa-adobe"></i></div>
+                            <h3 class="certification-title">Ficer Certified Associate</h3>
+                            <p class="certification-issuer"><strong>Issued by:</strong> Ficer</p>
+                            <p class="certification-date"><em>January 2023</em></p>
+                            <button class="btn btn-view-cert mt-3">View Certificate</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 order-lg-2">
+                        <div class="certification-img-container">
+                            <img src="certificate.png" class="img-fluid rounded shadow-sm certification-image" alt="Adobe Certificate">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ============================================= -->
-        <!-- ======== CORRECTED CONTACT SECTION START ======= -->
-        <!-- ============================================= -->
+
+        <!-- Services Section (Remains with its own background) -->
+        <section id="services" class="py-5">
+            <div class="container">
+                <h2 class="text-center" data-aos="fade-up">Services I Offer</h2>
+                <div class="row text-center">
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100"><div class="service-item p-4 h-100"><div class="service-icon"><i class="fas fa-palette fa-3x"></i></div><h4 class="mt-4">Branding</h4><p>Logo design, business cards, complete brand style guides.</p></div></div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200"><div class="service-item p-4 h-100"><div class="service-icon"><i class="fas fa-pencil-alt fa-3x"></i></div><h4 class="mt-4">Illustration</h4><p>Custom illustrations, icons, and detailed character design.</p></div></div>
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300"><div class="service-item p-4 h-100"><div class="service-icon"><i class="fas fa-video fa-3x"></i></div><h4 class="mt-4">Animation</h4><p>2D & 3D logo animations, engaging social media posts.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
         <section id="contact" class="py-5">
             <div class="container">
                 <h2 class="text-center" data-aos="fade-up">Get In Touch</h2>
                 <div class="row justify-content-center">
                     <div class="col-md-7 text-center" data-aos="fade-up" data-aos-delay="100">
                         <p class="lead mb-4">Interested in working together? Click the button below to send me a message directly on WhatsApp!</p>
-                        
-                        <!-- WhatsApp Button with the corrected phone number -->
-                        <a 
-                           href="https://wa.me/923117508807?text=Hello%20Faizan,%0A%0AI%20saw%20your%20portfolio%20and%20I'd%20like%20to%20discuss%20a%20project.%0A%0A*Please%20provide%20the%20following%20details:*%0A%0A*My%20Name:*%20%0A*My%20Email:*%20%0A*My%20Message:*%20"
-                           class="btn btn-primary w-100" 
-                           target="_blank"
-                        >
+                        <a href="https://wa.me/923117508807?text=Hello%20Faizan,%0A%0AI%20saw%20your%20portfolio%20and%20I'd%20like%20to%20discuss%20a%20project.%0A%0A*Please%20provide%20the%20following%20details:*%0A%0A*My%20Name:*%20%0A*My%20Email:*%20%0A*My%20Message:*%20" class="btn btn-primary w-100" target="_blank">
                             Contact me on WhatsApp <i class="fab fa-whatsapp"></i>
                         </a>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- ============================================= -->
-        <!-- ========= CORRECTED CONTACT SECTION END ======== -->
-        <!-- ============================================= -->
     </div>
 
     <!-- Footer -->
@@ -256,20 +316,23 @@
         </div>
     </footer>
 
-    <!-- Project Modal -->
+    <!-- Project Detail Modal -->
     <div class="modal fade" id="projectModal1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Project Title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+                <div class="modal-header"><h5 class="modal-title">Project Title</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
                 <div class="modal-body">
                     <img src="https://via.placeholder.com/800x600/6f00ff/fff?text=Project+Detail" class="img-fluid mb-3" alt="Project Detail">
                     <p>This is a detailed description of the project. It outlines the client's brief, the challenges faced, and how my creative solution successfully met their goals. The process involved research, sketching, digital creation, and final delivery.</p>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Certificate Image Modal -->
+    <div id="imageModal" class="modal-image">
+        <span class="close-image">×</span>
+        <img class="modal-content-image" id="modalImage" alt="Certificate Full-size View">
     </div>
 
     <!-- Bootstrap & AOS JS -->
@@ -281,25 +344,54 @@
         AOS.init({
             duration: 1000,
             once: true,
+            offset: 100,
         });
 
-        // Add mouse move effect to hero content
+        // Hero Section Mouse Move Effect
         const hero = document.querySelector('.hero-section');
         const heroContent = document.querySelector('.hero-content');
+        if (hero && heroContent) {
+            hero.addEventListener('mousemove', (e) => {
+                const { clientX, clientY } = e;
+                const x = (clientX / window.innerWidth - 0.5) * -40;
+                const y = (clientY / window.innerHeight - 0.5) * -40;
 
-        hero.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e;
-            const x = (clientX / window.innerWidth - 0.5) * -50;
-            const y = (clientY / window.innerHeight - 0.5) * -50;
+                heroContent.style.transform = `translate(${x}px, ${y}px) rotateX(${-y/2}deg) rotateY(${x/2}deg)`;
+                heroContent.style.transition = 'transform 0.1s ease-out';
+            });
+            hero.addEventListener('mouseleave', () => {
+                heroContent.style.transform = 'translate(0,0) rotateX(0) rotateY(0)';
+                heroContent.style.transition = 'transform 0.5s ease-in-out';
+            });
+        }
+        
+        // Certificate Image Modal Logic
+        const modal = document.getElementById("imageModal");
+        if(modal) {
+            const modalImg = document.getElementById("modalImage");
+            
+            const openModal = (el) => {
+                const certEntry = el.closest('.certification-entry');
+                const image = certEntry.querySelector('.certification-image');
+                modal.style.display = "block";
+                modalImg.src = image.src;
+            };
+            
+            document.querySelectorAll('.certification-image, .btn-view-cert').forEach(item => {
+                item.addEventListener('click', event => openModal(event.currentTarget));
+            });
 
-            heroContent.style.transform = `translate(${x}px, ${y}px) rotateX(${-y/2}deg) rotateY(${x/2}deg)`;
-            heroContent.style.transition = 'transform 0.1s ease-out';
-        });
-
-        hero.addEventListener('mouseleave', () => {
-            heroContent.style.transform = 'translate(0,0) rotateX(0) rotateY(0)';
-            heroContent.style.transition = 'transform 0.5s ease-in-out';
-        });
+            const span = document.getElementsByClassName("close-image")[0];
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+            
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
     </script>
 </body>
 </html>
