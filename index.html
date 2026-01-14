@@ -257,7 +257,7 @@
             width: 100%;
         }
 
-        /* Hero Section */
+        /* NEW HERO SECTION - About Me Style */
         .hero-section {
             min-height: 100vh;
             display: flex;
@@ -267,215 +267,12 @@
             padding-top: 80px;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: titleFlow 8s infinite ease-in-out;
-        }
-
-        @keyframes titleFlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: #94a3b8;
-            margin-bottom: 2.5rem;
-            animation: fadeInUp 1s ease 0.5s both;
-        }
-
-        .light-mode .hero-subtitle {
-            color: #64748b;
-        }
-
-        /* Floating Elements */
-        .floating-element {
-            position: absolute;
-            animation: float 6s infinite ease-in-out;
-            z-index: 0;
-            opacity: 0.7;
-        }
-
-        .floating-element.shape-1 {
-            top: 20%;
-            right: 10%;
-            width: 100px;
-            height: 100px;
-            background: var(--gradient-primary);
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            animation-delay: 0s;
-        }
-
-        .floating-element.shape-2 {
-            bottom: 30%;
-            left: 10%;
-            width: 150px;
-            height: 150px;
-            background: var(--gradient-secondary);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            animation-delay: 2s;
-        }
-
-        .floating-element.shape-3 {
-            top: 50%;
-            right: 20%;
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-accent);
-            border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            33% { transform: translateY(-20px) rotate(120deg); }
-            66% { transform: translateY(10px) rotate(240deg); }
-        }
-
-        /* CTA Button */
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.2rem 3rem;
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3);
-        }
-
-        /* Sections */
-        section {
-            padding: 120px 0;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: #94a3b8;
-            max-width: 600px;
-            margin: 0 auto 4rem;
-        }
-
-        .light-mode .section-subtitle {
-            color: #64748b;
-        }
-
-        /* Work Section */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .portfolio-item {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            background: var(--card-dark);
-            border: 1px solid var(--border-dark);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-
-        .light-mode .portfolio-item {
-            background: var(--card-light);
-            border: 1px solid var(--border-light);
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-15px) rotateX(5deg);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .portfolio-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .portfolio-item:hover .portfolio-image {
-            transform: scale(1.1);
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(15, 23, 42, 0.95));
-            padding: 2rem;
-            transform: translateY(100%);
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .light-mode .portfolio-overlay {
-            background: linear-gradient(transparent, rgba(255, 255, 255, 0.95));
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            transform: translateY(0);
-        }
-
-        /* About Section - UPDATED WITH CIRCULAR FRAME */
-        .about-container {
+        .hero-about-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 5rem;
             align-items: center;
+            width: 100%;
         }
 
         /* Circular Profile Container */
@@ -692,6 +489,124 @@
             }
         }
 
+        /* Hero Title for About Section */
+        .hero-title-about {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle-about {
+            font-size: 1.8rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .light-mode .hero-subtitle-about {
+            color: #64748b;
+        }
+
+        /* Hero Description */
+        .hero-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            color: #cbd5e1;
+        }
+
+        .light-mode .hero-description {
+            color: #475569;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 3rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Hero Skill Matrix */
+        .hero-skill-matrix {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .hero-skill-item {
+            background: var(--card-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .light-mode .hero-skill-item {
+            background: var(--card-light);
+            border: 1px solid var(--border-light);
+        }
+
+        .hero-skill-item:hover {
+            transform: translateY(-5px);
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .hero-skill-item i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-skill-item:hover i {
+            -webkit-text-fill-color: white;
+        }
+
+        .hero-skill-item div {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
         /* Enhanced Hover Effects */
         .profile-container:hover .profile-image {
             animation-play-state: paused;
@@ -729,6 +644,102 @@
                 var(--primary-light) 0%,
                 transparent 70%
             );
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .light-mode .section-subtitle {
+            color: #64748b;
+        }
+
+        /* Work Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--card-dark);
+            border: 1px solid var(--border-dark);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .light-mode .portfolio-item {
+            background: var(--card-light);
+            border: 1px solid var(--border-light);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(15, 23, 42, 0.95));
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .light-mode .portfolio-overlay {
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.95));
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        /* About Section - UPDATED FOR NEW CONTENT */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
         }
 
         .skill-matrix {
@@ -1026,17 +1037,20 @@
 
         /* Responsive Design */
         @media (max-width: 1200px) {
-            .hero-title { font-size: 3.5rem; }
+            .hero-title-about { font-size: 3rem; }
+            .hero-about-container { grid-template-columns: 1fr; gap: 3rem; }
             .about-container { grid-template-columns: 1fr; gap: 3rem; }
         }
 
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.8rem; }
+            .hero-title-about { font-size: 2.5rem; }
+            .hero-subtitle-about { font-size: 1.5rem; }
             .section-title { font-size: 2.5rem; }
             .portfolio-grid { grid-template-columns: 1fr; }
             .services-grid { grid-template-columns: 1fr; }
             .contact-wrapper { padding: 3rem; }
             .floating-element { display: none; }
+            .hero-skill-matrix { grid-template-columns: repeat(2, 1fr); }
             .profile-image {
                 max-width: 250px;
                 height: 250px;
@@ -1073,9 +1087,11 @@
         }
 
         @media (max-width: 480px) {
-            .hero-title { font-size: 2.2rem; }
+            .hero-title-about { font-size: 2rem; }
+            .hero-subtitle-about { font-size: 1.2rem; }
             .section-title { font-size: 2rem; }
             .cta-button, .whatsapp-cta { padding: 1rem 2rem; }
+            .hero-skill-matrix { grid-template-columns: 1fr; }
             .profile-image {
                 max-width: 200px;
                 height: 200px;
@@ -1191,48 +1207,10 @@
         </div>
     </nav>
 
-    <!-- Hero Section (Kept) -->
+    <!-- NEW HERO SECTION - About Me Content -->
     <section id="home" class="hero-section">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title animate-on-scroll">Transforming Visions into Visual Masterpieces</h1>
-                <p class="hero-subtitle animate-on-scroll" data-delay="0.2">Professional Graphic Designer with 2+ years of expertise in creating compelling visual narratives that drive engagement and brand recognition.</p>
-                <div class="d-flex gap-3 mt-4">
-                    <a href="#work" class="cta-button animate-on-scroll magnetic" data-delay="0.4">
-                        <span>Explore Portfolio</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="#contact" class="cta-button animate-on-scroll magnetic" data-delay="0.6" style="background: var(--gradient-secondary);">
-                        <span>Start Project</span>
-                        <i class="fas fa-rocket"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="floating-element shape-1"></div>
-        <div class="floating-element shape-2"></div>
-        <div class="floating-element shape-3"></div>
-    </section>
-
-    <!-- Work Section (Kept) -->
-    <section id="work" class="work-section">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="section-title animate-on-scroll">Featured Projects</h2>
-                <p class="section-subtitle animate-on-scroll" data-delay="0.2">A curated collection of my professional design work showcasing innovation and attention to detail</p>
-            </div>
-            
-            <div class="portfolio-grid" id="portfolioGrid">
-                <!-- Items loaded by JS below -->
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section - UPDATED WITH CIRCULAR FRAME -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="about-container">
+            <div class="hero-about-container">
                 <div class="profile-container animate-on-scroll">
                     <!-- Circular Frame Elements -->
                     <div class="profile-frame"></div>
@@ -1255,18 +1233,127 @@
                 </div>
                 
                 <div class="animate-on-scroll" data-delay="0.3">
-                    <h2 class="section-title mb-4">About Me</h2>
-                    <h3 class="h4 mb-3" style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Muhammad Faizan</h3>
-                    <p class="mb-4">I am a passionate graphic designer with over 2 years of professional experience specializing in digital and print media. My expertise lies in transforming complex ideas into visually compelling designs that communicate effectively and resonate with target audiences.</p>
+                    <h2 class="hero-title-about">Muhammad Faizan</h2>
+                    <h3 class="hero-subtitle-about">Professional Graphic Designer</h3>
                     
-                    <h4 class="mb-3">Core Competencies</h4>
+                    <p class="hero-description">
+                        I am a passionate graphic designer with over 2 years of professional experience specializing in digital and print media. My expertise lies in transforming complex ideas into visually compelling designs that communicate effectively and resonate with target audiences.
+                    </p>
+                    
+                    <h4 class="mb-3" style="color: var(--accent-dark); font-size: 1.3rem;">Core Competencies</h4>
+                    <div class="hero-skill-matrix">
+                        <div class="hero-skill-item magnetic">
+                            <i class="fas fa-palette"></i>
+                            <div>Brand Identity</div>
+                        </div>
+                        <div class="hero-skill-item magnetic">
+                            <i class="fas fa-vector-square"></i>
+                            <div>Illustration</div>
+                        </div>
+                        <div class="hero-skill-item magnetic">
+                            <i class="fas fa-print"></i>
+                            <div>Print Design</div>
+                        </div>
+                        <div class="hero-skill-item magnetic">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div>UI/UX Design</div>
+                        </div>
+                        <div class="hero-skill-item magnetic">
+                            <i class="fas fa-video"></i>
+                            <div>Motion Graphics</div>
+                        </div>
+                        <div class="hero-skill-item magnetic">
+                            <i class="fab fa-adobe"></i>
+                            <div>Adobe Suite</div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex gap-3 mt-5">
+                        <a href="#work" class="cta-button magnetic">
+                            <span>View Portfolio</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="cta-button magnetic" style="background: var(--gradient-secondary);">
+                            <span>Hire Me</span>
+                            <i class="fas fa-rocket"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Elements -->
+        <div class="floating-element shape-1"></div>
+        <div class="floating-element shape-2"></div>
+        <div class="floating-element shape-3"></div>
+    </section>
+
+    <!-- Work Section (Kept) -->
+    <section id="work" class="work-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title animate-on-scroll">Featured Projects</h2>
+                <p class="section-subtitle animate-on-scroll" data-delay="0.2">A curated collection of my professional design work showcasing innovation and attention to detail</p>
+            </div>
+            
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Items loaded by JS below -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - Updated with different content -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-container">
+                <div class="animate-on-scroll">
+                    <h2 class="section-title mb-4">My Design Philosophy</h2>
+                    <p class="mb-4">I believe that great design is more than just aesthetics—it's about solving problems and creating meaningful connections. Every project I undertake is approached with a strategic mindset, ensuring that the final design not only looks stunning but also achieves its intended purpose.</p>
+                    <p class="mb-4">With a strong foundation in Adobe Creative Suite and a keen eye for detail, I deliver designs that not only look stunning but also achieve strategic business objectives. I believe in creating designs that are both aesthetically pleasing and functionally effective.</p>
+                    
+                    <h4 class="mb-3">Design Approach</h4>
                     <div class="skill-matrix">
-                        <div class="skill-item magnetic"><i class="fas fa-palette"></i><div>Brand Identity</div></div>
-                        <div class="skill-item magnetic"><i class="fas fa-vector-square"></i><div>Illustration</div></div>
-                        <div class="skill-item magnetic"><i class="fas fa-print"></i><div>Print Design</div></div>
-                        <div class="skill-item magnetic"><i class="fas fa-mobile-alt"></i><div>UI/UX Design</div></div>
-                        <div class="skill-item magnetic"><i class="fas fa-video"></i><div>Motion Graphics</div></div>
-                        <div class="skill-item magnetic"><i class="fab fa-adobe"></i><div>Adobe Suite</div></div>
+                        <div class="skill-item magnetic">
+                            <i class="fas fa-lightbulb"></i>
+                            <div>Creative Ideation</div>
+                        </div>
+                        <div class="skill-item magnetic">
+                            <i class="fas fa-users"></i>
+                            <div>Client Collaboration</div>
+                        </div>
+                        <div class="skill-item magnetic">
+                            <i class="fas fa-pencil-alt"></i>
+                            <div>Concept Development</div>
+                        </div>
+                        <div class="skill-item magnetic">
+                            <i class="fas fa-cogs"></i>
+                            <div>Technical Execution</div>
+                        </div>
+                        <div class="skill-item magnetic">
+                            <i class="fas fa-chart-line"></i>
+                            <div>Results Analysis</div>
+                        </div>
+                        <div class="skill-item magnetic">
+                            <i class="fas fa-sync-alt"></i>
+                            <div>Continuous Improvement</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll" data-delay="0.3">
+                    <h3 class="h4 mb-3" style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Experience & Expertise</h3>
+                    <p class="mb-4">With 2+ years of professional experience, I've worked with clients across various industries, helping them establish strong visual identities and compelling marketing materials.</p>
+                    <p class="mb-4">My expertise spans across multiple design disciplines, allowing me to provide comprehensive solutions that cover all aspects of visual communication.</p>
+                    
+                    <div class="mt-4">
+                        <h5 class="mb-3">What I Bring to Your Project:</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Strategic design thinking</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Attention to detail</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Timely delivery</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Clear communication</li>
+                            <li><i class="fas fa-check-circle text-primary me-2"></i> Professional work ethic</li>
+                        </ul>
                     </div>
                 </div>
             </div>
