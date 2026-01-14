@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- HTML2PDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         /* --- START OF YOUR ORIGINAL CSS (Kept Exactly) --- */
         :root {
@@ -782,6 +784,192 @@
             -webkit-text-fill-color: white;
         }
 
+        /* NEW RESUME SECTION */
+        .resume-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume-container {
+            background: var(--card-dark);
+            border-radius: 30px;
+            padding: 4rem;
+            position: relative;
+            border: 1px solid var(--border-dark);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .light-mode .resume-container {
+            background: var(--card-light);
+            border: 1px solid var(--border-light);
+        }
+
+        .resume-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-dark);
+        }
+
+        .light-mode .resume-header {
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .resume-name {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .resume-title {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            margin-top: 0.5rem;
+        }
+
+        .light-mode .resume-title {
+            color: #64748b;
+        }
+
+        .resume-contact {
+            text-align: right;
+        }
+
+        .resume-contact p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.5rem;
+        }
+
+        .resume-contact i {
+            color: var(--primary-dark);
+        }
+
+        .resume-section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-dark);
+            display: inline-block;
+        }
+
+        .resume-item {
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .resume-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+        }
+
+        .resume-item-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .resume-item-subtitle {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+        }
+
+        .light-mode .resume-item-subtitle {
+            color: #64748b;
+        }
+
+        .resume-item-date {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+        }
+
+        .resume-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .resume-skill-item {
+            background: rgba(37, 99, 235, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .resume-skill-item:hover {
+            transform: translateY(-5px);
+            background: rgba(37, 99, 235, 0.2);
+        }
+
+        .resume-skill-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-skill-level {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .light-mode .resume-skill-level {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .resume-skill-progress {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 3px;
+        }
+
+        .resume-download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .resume-download-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
+        }
+
         /* Certifications */
         .certification-track {
             position: relative;
@@ -1040,6 +1228,8 @@
             .hero-title-about { font-size: 3rem; }
             .hero-about-container { grid-template-columns: 1fr; gap: 3rem; }
             .about-container { grid-template-columns: 1fr; gap: 3rem; }
+            .resume-header { flex-direction: column; text-align: center; }
+            .resume-contact { text-align: center; margin-top: 1.5rem; }
         }
 
         @media (max-width: 768px) {
@@ -1076,6 +1266,10 @@
                 font-size: 1rem;
             }
             
+            .resume-container { padding: 2rem; }
+            .resume-name { font-size: 2rem; }
+            .resume-title { font-size: 1.2rem; }
+            
             @keyframes orbit {
                 0% {
                     transform: rotate(0deg) translateX(150px) rotate(0deg);
@@ -1106,6 +1300,12 @@
             
             .orbiting-element {
                 display: none; /* Hide orbiting elements on very small screens */
+            }
+            .resume-download-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
             }
         }
         /* --- END OF YOUR ORIGINAL CSS --- */
@@ -1157,15 +1357,19 @@
         .portfolio-overlay h5 {
             text-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
-.me{
-    margin-top: 100px;
-}
+
     </style>
 </head>
 <body>
     <!-- New Enhancement Elements -->
     <div id="scroll-progress"></div>
     <div class="cursor-follower" id="cursor"></div>
+
+    <!-- Resume Download Button -->
+    <button class="resume-download-btn magnetic" id="downloadResume">
+        <i class="fas fa-download"></i>
+        Download Resume
+    </button>
 
     <!-- Theme Toggle (Kept) -->
     <div class="theme-toggle" id="themeToggle">
@@ -1189,7 +1393,7 @@
         </div>
     </div>
 
-    <!-- Navigation (Kept) -->
+    <!-- Navigation (Updated with Resume Link) -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">FaizanVisuals</a>
@@ -1201,6 +1405,7 @@
                     <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#work">Portfolio</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
                     <li class="nav-item"><a class="nav-link" href="#certifications">Credentials</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
@@ -1210,7 +1415,7 @@
     </nav>
 
     <!-- NEW HERO SECTION - About Me Content -->
-    <section id="home" class="hero-section me">
+    <section id="home" class="hero-section">
         <div class="container">
             <div class="hero-about-container">
                 <div class="profile-container animate-on-scroll">
@@ -1275,9 +1480,9 @@
                             <span>View Portfolio</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
-                        <a href="#contact" class="cta-button magnetic" style="background: var(--gradient-secondary);">
-                            <span>Hire Me</span>
-                            <i class="fas fa-rocket"></i>
+                        <a href="#resume" class="cta-button magnetic" style="background: var(--gradient-secondary);">
+                            <span>View Resume</span>
+                            <i class="fas fa-file-alt"></i>
                         </a>
                     </div>
                 </div>
@@ -1356,6 +1561,141 @@
                             <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Clear communication</li>
                             <li><i class="fas fa-check-circle text-primary me-2"></i> Professional work ethic</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW RESUME SECTION -->
+    <section id="resume" class="resume-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title animate-on-scroll">Professional Resume</h2>
+                <p class="section-subtitle animate-on-scroll" data-delay="0.2">Detailed overview of my qualifications, experience, and skills</p>
+            </div>
+            
+            <div class="resume-container animate-on-scroll" id="resumeContent">
+                <!-- Resume Header -->
+                <div class="resume-header">
+                    <div>
+                        <h1 class="resume-name">Muhammad Faizan</h1>
+                        <p class="resume-title">Professional Graphic Designer</p>
+                    </div>
+                    <div class="resume-contact">
+                        <p><i class="fas fa-phone"></i> +92 311 7508807</p>
+                        <p><i class="fas fa-envelope"></i> faizan.designs@email.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Pakistan</p>
+                    </div>
+                </div>
+                
+                <!-- Professional Summary -->
+                <div class="resume-item">
+                    <h3 class="resume-section-title">Professional Summary</h3>
+                    <p>Creative and detail-oriented Graphic Designer with 2+ years of professional experience in digital and print media. Proven ability to transform complex ideas into visually compelling designs that communicate effectively and resonate with target audiences. Expertise in Adobe Creative Suite with a strong portfolio of successful projects across various industries.</p>
+                </div>
+                
+                <!-- Work Experience -->
+                <div>
+                    <h3 class="resume-section-title">Work Experience</h3>
+                    
+                    <div class="resume-item">
+                        <span class="resume-item-date">2022 - Present</span>
+                        <h4 class="resume-item-title">Freelance Graphic Designer</h4>
+                        <p class="resume-item-subtitle">Self-Employed</p>
+                        <ul>
+                            <li>Developed brand identities for 15+ startups and small businesses</li>
+                            <li>Created engaging social media graphics that increased client engagement by 40%</li>
+                            <li>Designed marketing materials that helped clients achieve their business objectives</li>
+                            <li>Managed multiple projects simultaneously while meeting all deadlines</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="resume-item">
+                        <span class="resume-item-date">2021 - 2022</span>
+                        <h4 class="resume-item-title">Junior Graphic Designer</h4>
+                        <p class="resume-item-subtitle">Creative Design Agency</p>
+                        <ul>
+                            <li>Assisted senior designers in creating visual content for various campaigns</li>
+                            <li>Developed print materials including brochures, flyers, and business cards</li>
+                            <li>Contributed to website redesign projects with UI/UX improvements</li>
+                            <li>Maintained brand consistency across all design projects</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Education -->
+                <div>
+                    <h3 class="resume-section-title">Education</h3>
+                    
+                    <div class="resume-item">
+                        <span class="resume-item-date">2023</span>
+                        <h4 class="resume-item-title">Certified Graphic Designer</h4>
+                        <p class="resume-item-subtitle">Fatima Institute of Computer Sciences</p>
+                        <p>Comprehensive training in graphic design principles, software proficiency, and professional workflow methodologies.</p>
+                    </div>
+                    
+                    <div class="resume-item">
+                        <span class="resume-item-date">2023</span>
+                        <h4 class="resume-item-title">Ficer Certified Associate</h4>
+                        <p class="resume-item-subtitle">Ficer Certification Program</p>
+                        <p>Advanced certification demonstrating mastery in Adobe Creative Suite applications and industry-standard practices.</p>
+                    </div>
+                </div>
+                
+                <!-- Skills -->
+                <div>
+                    <h3 class="resume-section-title">Technical Skills</h3>
+                    <div class="resume-skills-grid">
+                        <div class="resume-skill-item">
+                            <div class="resume-skill-name">Adobe Photoshop</div>
+                            <div class="resume-skill-level">
+                                <div class="resume-skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="resume-skill-item">
+                            <div class="resume-skill-name">Adobe Illustrator</div>
+                            <div class="resume-skill-level">
+                                <div class="resume-skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="resume-skill-item">
+                            <div class="resume-skill-name">Adobe InDesign</div>
+                            <div class="resume-skill-level">
+                                <div class="resume-skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="resume-skill-item">
+                            <div class="resume-skill-name">UI/UX Design</div>
+                            <div class="resume-skill-level">
+                                <div class="resume-skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="resume-skill-item">
+                            <div class="resume-skill-name">Brand Identity</div>
+                            <div class="resume-skill-level">
+                                <div class="resume-skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="resume-skill-item">
+                            <div class="resume-skill-name">Print Design</div>
+                            <div class="resume-skill-level">
+                                <div class="resume-skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certifications -->
+                <div>
+                    <h3 class="resume-section-title">Certifications</h3>
+                    <div class="resume-item">
+                        <h4 class="resume-item-title">Certified Graphic Designer</h4>
+                        <p class="resume-item-subtitle">Fatima Institute of Computer Sciences - 2023</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4 class="resume-item-title">Ficer Certified Associate</h4>
+                        <p class="resume-item-subtitle">Ficer - 2023</p>
                     </div>
                 </div>
             </div>
@@ -1616,12 +1956,121 @@
             }
         }
 
+        // Resume Download Functionality
+        function setupResumeDownload() {
+            const downloadBtn = document.getElementById('downloadResume');
+            const resumeContent = document.getElementById('resumeContent');
+            
+            if (!downloadBtn || !resumeContent) return;
+            
+            downloadBtn.addEventListener('click', () => {
+                // Show loading state
+                const originalHTML = downloadBtn.innerHTML;
+                downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+                downloadBtn.disabled = true;
+                
+                // Options for PDF generation
+                const options = {
+                    margin: [20, 20, 20, 20],
+                    filename: 'Muhammad_Faizan_Resume.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { 
+                        scale: 2,
+                        useCORS: true,
+                        logging: false
+                    },
+                    jsPDF: { 
+                        unit: 'mm', 
+                        format: 'a4', 
+                        orientation: 'portrait' 
+                    }
+                };
+                
+                // Generate PDF
+                html2pdf().from(resumeContent).set(options).save().then(() => {
+                    // Reset button state
+                    downloadBtn.innerHTML = originalHTML;
+                    downloadBtn.disabled = false;
+                    
+                    // Show success notification
+                    showNotification('Resume downloaded successfully!', 'success');
+                }).catch((error) => {
+                    // Reset button state
+                    downloadBtn.innerHTML = originalHTML;
+                    downloadBtn.disabled = false;
+                    
+                    // Show error notification
+                    showNotification('Error downloading resume. Please try again.', 'error');
+                    console.error('PDF Generation Error:', error);
+                });
+            });
+        }
+        
+        // Notification function
+        function showNotification(message, type) {
+            // Remove existing notification
+            const existingNotification = document.querySelector('.custom-notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `custom-notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            // Add styles
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 30px;
+                background: ${type === 'success' ? 'var(--gradient-primary)' : 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)'};
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                z-index: 10000;
+                animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            `;
+            
+            // Add animation keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'fadeOut 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, 3000);
+        }
+
         // Initialize Everything
         document.addEventListener('DOMContentLoaded', () => {
             loadPortfolio();
             initScrollAnimation();
             createGeometricGrid();
             addPulsingDots();
+            setupResumeDownload();
         });
     </script>
 </body>
